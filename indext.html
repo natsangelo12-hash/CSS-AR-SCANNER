@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS AR Tool</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- HOME PAGE -->
+    <div class="app" id="homePage">
+
+        <div class="logo">
+            <div class="logo-mark">
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+
+        <h1>CSS AR TOOL</h1>
+
+        <p class="subtitle">
+            CSS Learning Apps
+        </p>
+
+        <div class="functions">
+
+            <button class="app-button" onclick="openScanner()">
+                <span class="icon">📷</span>
+
+                <span class="button-text">
+                    SCANNER
+                    <small>Identify tools and improve results with your feedback</small>
+                </span>
+
+                <span class="arrow">›</span>
+            </button>
+
+            <button class="app-button" onclick="openToolList('tools')">
+                <span class="icon-group" aria-label="Tool section">
+                    <span class="icon tool-icon">🔧</span>
+                </span>
+
+                <span class="button-text">
+                    TOOL
+                    <small>Explore networking tools</small>
+                </span>
+
+                <span class="arrow">›</span>
+            </button>
+
+            <button class="app-button" onclick="openToolList('equipment')">
+                <span class="icon-group" aria-label="Equipment section">
+                    <span class="icon equipment-icon">📡</span>
+                </span>
+
+                <span class="button-text">
+                    EQUIPMENT
+                    <small>Explore networking equipment</small>
+                </span>
+
+                <span class="arrow">›</span>
+            </button>
+
+        </div>
+
+        <button class="tutorial-open" type="button" onclick="openTutorial()">How to use this app</button>
+    </div>
+
+    <div class="tutorial-modal" id="tutorialModal" aria-hidden="true" onclick="closeTutorial()">
+        <section class="tutorial-card" role="dialog" aria-modal="true" aria-labelledby="tutorialTitle" onclick="event.stopPropagation()">
+            <button class="tutorial-close" id="tutorialClose" type="button" onclick="closeTutorial()" aria-label="Close tutorial">×</button>
+            <h2 id="tutorialTitle">How to use CSS AR Tool</h2>
+            <p class="tutorial-intro">Find equipment, scan items, and help improve recognition with confirmed examples.</p>
+            <ol class="tutorial-steps">
+                <li>
+                    <strong>Scan an item</strong>
+                    <p>Choose <b>Scanner</b>, allow camera access, then center one item in the frame and hold it steady in good light.</p>
+                </li>
+                <li>
+                    <strong>Confirm or correct a match</strong>
+                    <p>If the scanner identifies an item, confirm it if correct. If it is wrong, choose the correct catalog item to teach the scanner.</p>
+                </li>
+                <li>
+                    <strong>Teach the scanner when no match appears</strong>
+                    <p>With the camera running, choose <b>Teach Scanner</b>, select the item in view, and save a camera example. Examples stay on this device; no camera photos are saved.</p>
+                </li>
+                <li>
+                    <strong>Browse and search</strong>
+                    <p>Open <b>Tool</b> or <b>Equipment</b> to browse the catalog. Search by name, description, function, or an alternate item name.</p>
+                </li>
+            </ol>
+            <button class="tutorial-done" type="button" onclick="closeTutorial()">Got it</button>
+        </section>
+    </div>
+
+
+    <!-- TOOL LIST PAGE -->
+    <div class="tool-list-page" id="toolListPage">
+
+        <div class="tool-header">
+
+            <button class="back-button" onclick="goHome()">
+                ‹
+            </button>
+
+            <div>
+                <h2 id="listHeaderTitle">TOOL & EQUIPMENT</h2>
+                <p id="listHeaderSubtitle">Networking Tools & Equipment</p>
+            </div>
+
+        </div>
+
+        <div class="catalog-search">
+            <label for="catalogSearch">Search the catalog</label>
+            <input id="catalogSearch" type="search" placeholder="Search tools, equipment, or uses..." oninput="filterCatalogCards(this.value)" autocomplete="off">
+        </div>
+
+        <div class="category-block" id="toolsSection">
+            <h3 class="category-title">TOOLS</h3>
+            <p class="catalog-search-empty" id="toolsSearchEmpty" aria-live="polite" hidden>No tools match your search.</p>
+            <div class="tools-container">
+
+                <div class="tool-card">
+                    <img src="image/Air%20duster.JPG.jpg" alt="Air Duster">
+                    <div class="tool-info">
+                        <h3>Air Duster</h3>
+                        <p><strong>Explanation:</strong> A spray can that releases compressed air to clean dust from sensitive electronics.</p>
+                        <p><strong>Function:</strong> It removes debris and dust without leaving moisture behind.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <img src="image/Brush.JPG.jpg" alt="Brush">
+                    <div class="tool-info">
+                        <h3>Brush</h3>
+                        <p><strong>Explanation:</strong> A small cleaning brush used for delicate dusting and surface cleaning.</p>
+                        <p><strong>Function:</strong> It cleans keyboards, vents, and computer components safely.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <img src="image/Cable Ties.JPG.jpg" alt="Cable Ties">
+                    <div class="tool-info">
+                        <h3>Cable Ties</h3>
+                        <p><strong>Explanation:</strong> Flexible plastic straps that secure and organize wire bundles.</p>
+                        <p><strong>Function:</strong> They keep network cables tidy and prevent tangling.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <img src="image/Clean cloth.JPG.jpg" alt="Clean Cloth">
+                    <div class="tool-info">
+                        <h3>Clean Cloth</h3>
+                        <p><strong>Explanation:</strong> A lint-free cloth used for wiping screens and hardware surfaces.</p>
+                        <p><strong>Function:</strong> It removes fingerprints, dust, and smudges from equipment.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <img src="image/Diagonal Cutting Pliers.JPG.jpg" alt="Diagonal Cutting Pliers">
+                    <div class="tool-info">
+                        <h3>Diagonal Cutting Pliers</h3>
+                        <p><strong>Explanation:</strong> Diagonal cutting pliers are hand tools with sharp, angled cutting edges.</p>
+                        <p><strong>Function:</strong> They are used to cut wires, cables, and small pieces of metal.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <img src="image/Digital Multimeter.JPG.jpg" alt="Digital Multimeter">
+                    <div class="tool-info">
+                        <h3>Digital Multimeter</h3>
+                        <p><strong>Explanation:</strong> A digital measuring device used for checking electrical values.</p>
+                        <p><strong>Function:</strong> It measures voltage, current, and resistance for testing circuits.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <img src="image/Electrical tape.JPG.jpg" alt="Electrical Tape">
+                    <div class="tool-info">
+                        <h3>Electrical Tape</h3>
+                        <p><strong>Explanation:</strong> An insulating tape made for electrical wiring and cable protection.</p>
+                        <p><strong>Function:</strong> It covers and protects exposed wires and helps secure connections.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <img src="image/ESD Gloves.JPG.jpg" alt="ESD Gloves">
+                    <div class="tool-info">
+                        <h3>ESD Gloves</h3>
+                        <p><strong>Explanation:</strong> Gloves designed to protect electrostatic-sensitive components.</p>
+                        <p><strong>Function:</strong> They reduce the risk of electrostatic discharge while handling equipment.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <img src="image/Flashlight.JPG.jpg" alt="Flashlight">
+                    <div class="tool-info">
+                        <h3>Flashlight</h3>
+                        <p><strong>Explanation:</strong> A portable light source used to illuminate dark workspaces.</p>
+                        <p><strong>Function:</strong> It helps inspect cables, ports, and equipment in low-light areas.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <img src="image/Flathead Screwdriver.JPG.jpg" alt="Flathead Screwdriver">
+                    <div class="tool-info">
+                        <h3>Flathead Screwdriver</h3>
+                        <p><strong>Explanation:</strong> A screwdriver with a flat, straight tip for slotted screws.</p>
+                        <p><strong>Function:</strong> It tightens or loosens flat-head screws in computers and devices.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <img src="image/Long-Nose Pliers.JPG.jpg" alt="Long-Nose Pliers">
+                    <div class="tool-info">
+                        <h3>Long-Nose Pliers</h3>
+                        <p><strong>Explanation:</strong> Long-nose pliers have narrow jaws for reaching small or hard-to-access spaces.</p>
+                        <p><strong>Function:</strong> They grip, bend, and position small wires and components in tight areas.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <img src="image/Permanet Marker.JPG.jpg" alt="Permanent Marker">
+                    <div class="tool-info">
+                        <h3>Permanent Marker</h3>
+                        <p><strong>Explanation:</strong> A marker with permanent ink used to label cables and equipment.</p>
+                        <p><strong>Function:</strong> It identifies ports, patch cords, and items during maintenance and setup.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <img src="image/Phillips Screwdriver.RPG.jpg" alt="Phillips Screwdriver">
+                    <div class="tool-info">
+                        <h3>Phillips Screwdriver</h3>
+                        <p><strong>Explanation:</strong> A Phillips screwdriver uses a cross-shaped tip for Phillips-head screws.</p>
+                        <p><strong>Function:</strong> It is used to tighten or loosen screws when assembling or repairing gear.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <img src="image/Power Supply Tester.JPG.jpg" alt="Power Supply Tester">
+                    <div class="tool-info">
+                        <h3>Power Supply Tester</h3>
+                        <p><strong>Explanation:</strong> A tester used to check whether a power supply is delivering proper voltage.</p>
+                        <p><strong>Function:</strong> It confirms the power output is safe and correct before use.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <img src="image/RJ45 Crimping Tool.JPG.jpg" alt="RJ45 Crimping Tool">
+                    <div class="tool-info">
+                        <h3>RJ45 Crimping Tool</h3>
+                        <p><strong>Explanation:</strong> An RJ45 crimping tool is used to terminate Ethernet cables with connectors.</p>
+                        <p><strong>Function:</strong> It secures an RJ45 connector onto the cable for network connectivity.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <img src="image/Soldering IronJPG.jpg" alt="Soldering Iron">
+                    <div class="tool-info">
+                        <h3>Soldering Iron</h3>
+                        <p><strong>Explanation:</strong> A handheld tool that produces heat at a metal tip for soldering.</p>
+                        <p><strong>Function:</strong> It melts solder to join wires and electronic components together.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <img src="image/Tweezers.JPG.jpg" alt="Tweezers">
+                    <div class="tool-info">
+                        <h3>Tweezers</h3>
+                        <p><strong>Explanation:</strong> Small hand tools used for gripping tiny components with precision.</p>
+                        <p><strong>Function:</strong> They help place and remove small objects during electronics repair.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <img src="image/Utillity knife.JPG.jpg" alt="Utility Knife">
+                    <div class="tool-info">
+                        <h3>Utility Knife</h3>
+                        <p><strong>Explanation:</strong> A cutting tool with a retractable blade used for trimming and stripping materials.</p>
+                        <p><strong>Function:</strong> It helps cut cable insulation, tape, or packaging safely and precisely.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card" data-scan-labels="wire cutters, cable cutter, wire cutting pliers">
+                    <img src="image/Wire Cutter.JPG.jpg" alt="Wire Cutter">
+                    <div class="tool-info">
+                        <h3>Wire Cutter</h3>
+                        <p><strong>Explanation:</strong> A hand tool with cutting jaws made for trimming electrical and network wires.</p>
+                        <p><strong>Function:</strong> It cuts cables to length when preparing or repairing network connections.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card" data-scan-labels="anti-static mat, esd work mat, electrostatic discharge mat">
+                    <img src="image/Table Matt.JPG.jpg" alt="ESD Mat">
+                    <div class="tool-info">
+                        <h3>ESD Mat</h3>
+                        <p><strong>Explanation:</strong> An electrostatic-discharge protective mat used as a safe surface for sensitive electronics.</p>
+                        <p><strong>Function:</strong> It helps dissipate static charge while components are handled or repaired.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card" data-scan-labels="punchdown tool, ethernet punch down tool, 110 punch down tool">
+                    <img src="image/Punch Down Tool.JPG.jpg" alt="Punch Down Tool">
+                    <div class="tool-info">
+                        <h3>Punch Down Tool</h3>
+                        <p><strong>Explanation:</strong> A spring-loaded tool that presses individual wires into insulation-displacement terminals.</p>
+                        <p><strong>Function:</strong> It terminates network cable wires in patch panels and keystone jacks.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card" data-scan-labels="measuring tape, retractable tape measure">
+                    <img src="image/measuring tape.jpg" alt="Tape Measure">
+                    <div class="tool-info">
+                        <h3>Tape Measure</h3>
+                        <p><strong>Explanation:</strong> A retractable measuring tool with a marked flexible blade.</p>
+                        <p><strong>Function:</strong> It measures cable runs and equipment placement distances.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card" data-scan-labels="magnifier, hand magnifying glass">
+                    <img src="image/magnifying glass.jpg" alt="Magnifying Glass">
+                    <div class="tool-info">
+                        <h3>Magnifying Glass</h3>
+                        <p><strong>Explanation:</strong> A handheld optical lens that enlarges small objects and details.</p>
+                        <p><strong>Function:</strong> It helps inspect small connectors, circuit markings, and component damage.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card" data-scan-labels="telescoping magnetic pickup tool, magnetic retrieval tool, extension magnet">
+                    <img src="image/magnetic pickup tool.jpg" alt="Magnetic Pickup Tool">
+                    <div class="tool-info">
+                        <h3>Magnetic Pickup Tool</h3>
+                        <p><strong>Explanation:</strong> An extendable magnetic tool for retrieving small metal objects from confined spaces.</p>
+                        <p><strong>Function:</strong> It picks up dropped screws and other metal parts inside equipment cases.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card" data-scan-labels="phone repair mat, electronics repair station mat, electronics repair toolkit">
+                    <img src="image/Table Matt.JPG.jpg" alt="Electronics Repair Mat and Tool Kit">
+                    <div class="tool-info">
+                        <h3>Electronics Repair Mat and Tool Kit</h3>
+                        <p><strong>Explanation:</strong> A work mat with organized compartments and small tools for electronics repair.</p>
+                        <p><strong>Function:</strong> It protects the work surface and keeps repair tools and components organized.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card" data-scan-labels="hex keys, allen keys, allen wrench set">
+                    <img src="image/Allen Wrench.JPG.jpg" alt="Hex Key Set">
+                    <div class="tool-info">
+                        <h3>Hex Key Set</h3>
+                        <p><strong>Explanation:</strong> A set of L-shaped hexagonal keys in different sizes.</p>
+                        <p><strong>Function:</strong> It tightens and loosens hex-socket fasteners on equipment and workstations.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card" data-scan-labels="infrared temperature gun, non-contact thermometer, temperature gun">
+                    <img src="image/Infrared Thermometer.JPG.jpg" alt="Infrared Thermometer">
+                    <div class="tool-info">
+                        <h3>Infrared Thermometer</h3>
+                        <p><strong>Explanation:</strong> A non-contact thermometer that measures surface temperature using infrared light.</p>
+                        <p><strong>Function:</strong> It checks whether computer and network equipment is overheating.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card" data-scan-labels="voltage tester pen, non-contact voltage detector, electrical tester">
+                    <img src="image/voltage tester.jpg" alt="Voltage Tester">
+                    <div class="tool-info">
+                        <h3>Voltage Tester</h3>
+                        <p><strong>Explanation:</strong> A handheld tester that indicates the presence of electrical voltage.</p>
+                        <p><strong>Function:</strong> It checks for voltage before working around powered equipment.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card" data-scan-labels="telescoping inspection mirror, mechanic inspection mirror, extendable mirror">
+                    <img src="image/inspection mirror.jpg" alt="Inspection Mirror">
+                    <div class="tool-info">
+                        <h3>Inspection Mirror</h3>
+                        <p><strong>Explanation:</strong> A small mirror on an extendable handle for viewing hidden areas.</p>
+                        <p><strong>Function:</strong> It helps inspect ports, connectors, and spaces that are difficult to see directly.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card" data-scan-labels="allen wrench, allen key, hex wrench, hex key">
+                    <img src="image/Allen%20Wrench.JPG.jpg" alt="Allen Wrench">
+                    <div class="tool-info">
+                        <h3>Allen Wrench</h3>
+                        <p><strong>Explanation:</strong> A small hex-key wrench used for tightening or loosening recessed fasteners.</p>
+                        <p><strong>Function:</strong> It helps adjust equipment panels, brackets, and mounting hardware in networking setups.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card" data-scan-labels="network cable, ethernet cable, patch cord, cable">
+                    <img src="image/Cable.JPG.jpg" alt="Network Cable">
+                    <div class="tool-info">
+                        <h3>Network Cable</h3>
+                        <p><strong>Explanation:</strong> A flexible cable used to carry signals between network devices and equipment.</p>
+                        <p><strong>Function:</strong> It links routers, switches, PCs, and patch panels for reliable communication.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card" data-scan-labels="coaxial cable stripper, cable stripping tool, wire stripper">
+                    <img src="image/coaxial%20cable%20stripper.jpg.jpg" alt="Coaxial Cable Stripper">
+                    <div class="tool-info">
+                        <h3>Coaxial Cable Stripper</h3>
+                        <p><strong>Explanation:</strong> A precision stripping tool designed to remove the outer jacket from coaxial cable.</p>
+                        <p><strong>Function:</strong> It prepares cable ends for connectors, adapters, and termination tasks.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card" data-scan-labels="digital test pen, voltage probe, tester pen">
+                    <img src="image/digital%20test%20pen.jpg.jpg" alt="Digital Test Pen">
+                    <div class="tool-info">
+                        <h3>Digital Test Pen</h3>
+                        <p><strong>Explanation:</strong> A compact probe used for testing live electrical circuits and cable continuity.</p>
+                        <p><strong>Function:</strong> It checks for power presence and helps verify electrical connections safely.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card" data-scan-labels="network cable tester, lan tester, cable diagnostics tool">
+                    <img src="image/Network%20cable%20tester%20LAN%20tester.jpg.jpg" alt="Network Cable Tester">
+                    <div class="tool-info">
+                        <h3>Network Cable Tester</h3>
+                        <p><strong>Explanation:</strong> A tester that verifies the wiring and continuity of network cables.</p>
+                        <p><strong>Function:</strong> It diagnoses cable faults, shorts, and miswires before installation or repair.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card" data-scan-labels="nut driver, socket driver, hand driver">
+                    <img src="image/nut%20driver.jpg" alt="Nut Driver">
+                    <div class="tool-info">
+                        <h3>Nut Driver</h3>
+                        <p><strong>Explanation:</strong> A hand tool with a hollow socket used to turn nuts and threaded fasteners.</p>
+                        <p><strong>Function:</strong> It secures rack screws, brackets, and hardware during equipment installation.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card" data-scan-labels="anti static wrist strap, esd wrist strap, ground strap">
+                    <img src="image/Antistatic%20Wrist%20strap%20jpg.jpg" alt="Antistatic Wrist Strap">
+                    <div class="tool-info">
+                        <h3>Antistatic Wrist Strap</h3>
+                        <p><strong>Explanation:</strong> A strap worn on the wrist to safely discharge static electricity before handling electronics.</p>
+                        <p><strong>Function:</strong> It protects sensitive components from electrostatic discharge during repair or setup.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card" data-scan-labels="pass through rj45 crimper, pass through crimping tool, ethernet crimper">
+                    <img src="image/pass-through%20RJ45%20Crimping%20tool.jpg.jpg" alt="Pass-through RJ45 Crimping Tool">
+                    <div class="tool-info">
+                        <h3>Pass-through RJ45 Crimping Tool</h3>
+                        <p><strong>Explanation:</strong> An RJ45 crimping tool designed for pass-through connectors used in Ethernet cabling.</p>
+                        <p><strong>Function:</strong> It trims and secures pass-through connectors for clean cable terminations.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card" data-scan-labels="power extension, extension cord, power strip cable">
+                    <img src="image/Power%20extension.jpg.jpg" alt="Power Extension">
+                    <div class="tool-info">
+                        <h3>Power Extension</h3>
+                        <p><strong>Explanation:</strong> A flexible power cable that extends the reach of an electrical outlet.</p>
+                        <p><strong>Function:</strong> It supplies power safely to test benches, routers, switches, and workstations.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card" data-scan-labels="tool kit, computer repair toolkit, electronics tool set">
+                    <img src="image/Tools.JPG.jpg" alt="Networking Tool Kit">
+                    <div class="tool-info">
+                        <h3>Networking Tool Kit</h3>
+                        <p><strong>Explanation:</strong> A collection of hand tools and accessories used for computer and network maintenance.</p>
+                        <p><strong>Function:</strong> It keeps common tools together for installation, troubleshooting, and repair work.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card" data-scan-labels="power supply tester, computer power supply tester, psu tester">
+                    <img src="image/Power%20supply%20tester.RPG.jpg" alt="Power Supply Tester">
+                    <div class="tool-info">
+                        <h3>Power Supply Tester</h3>
+                        <p><strong>Explanation:</strong> A tester used to check whether a computer power supply is delivering the correct voltages.</p>
+                        <p><strong>Function:</strong> It helps verify power output before connecting a supply to computer equipment.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="category-block" id="equipmentSection">
+            <h3 class="category-title">EQUIPMENT</h3>
+            <p class="catalog-search-empty" id="equipmentSearchEmpty" aria-live="polite" hidden>No equipment matches your search.</p>
+            <div class="tools-container">
+
+                <div class="tool-card">
+                    <img src="image/Keyboard.JPG.jpg" alt="Keyboard">
+                    <div class="tool-info">
+                        <h3>Keyboard</h3>
+                        <p><strong>Explanation:</strong> An input device used to type commands and data into a computer system.</p>
+                        <p><strong>Function:</strong> It helps users operate and configure networking equipment and software.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <img src="image/Loptop.JPG.jpg" alt="Laptop">
+                    <div class="tool-info">
+                        <h3>Laptop</h3>
+                        <p><strong>Explanation:</strong> A portable computer used for configuration, troubleshooting, and management.</p>
+                        <p><strong>Function:</strong> It runs diagnostic software and network tools for testing and repair.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <img src="image/Monitor.JPG.jpg" alt="Monitor">
+                    <div class="tool-info">
+                        <h3>Monitor</h3>
+                        <p><strong>Explanation:</strong> A display device that shows the output of a computer or network device.</p>
+                        <p><strong>Function:</strong> It allows technicians to view configuration screens and system status.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <img src="image/Mouse.JPG.jpg" alt="Mouse">
+                    <div class="tool-info">
+                        <h3>Mouse</h3>
+                        <p><strong>Explanation:</strong> A pointing device used to control the cursor on a computer screen.</p>
+                        <p><strong>Function:</strong> It helps navigate GUI-based network configuration and diagnostic tools.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <img src="image/Printer.JPG.jpg" alt="Printer">
+                    <div class="tool-info">
+                        <h3>Printer</h3>
+                        <p><strong>Explanation:</strong> A device that produces printed output from digital documents or labels.</p>
+                        <p><strong>Function:</strong> It prints reports, labels, and configuration sheets used in networking work.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <img src="image/RouterJPG.jpg" alt="Router">
+                    <div class="tool-info">
+                        <h3>Router</h3>
+                        <p><strong>Explanation:</strong> A network device that directs data between computers and connected networks.</p>
+                        <p><strong>Function:</strong> It routes internet traffic and manages connectivity for local devices.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <img src="image/Switch.JPG.jpg" alt="Switch">
+                    <div class="tool-info">
+                        <h3>Switch</h3>
+                        <p><strong>Explanation:</strong> A network switch connects multiple devices within the same local network.</p>
+                        <p><strong>Function:</strong> It forwards data between devices and helps manage network traffic.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card" data-scan-labels="ethernet cable, network cable, rj45 cable, lan cable">
+                    <img src="image/RJ45 Cable.jpg" alt="Ethernet Cable">
+                    <div class="tool-info">
+                        <h3>Ethernet Cable</h3>
+                        <p><strong>Explanation:</strong> A twisted-pair network cable with RJ45 plugs on both ends.</p>
+                        <p><strong>Function:</strong> It connects computers, routers, and switches to a wired network.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card" data-scan-labels="central processing unit, computer processor">
+                    <img src="image/CPU.JPG.jpg" alt="CPU">
+                    <div class="tool-info">
+                        <h3>CPU</h3>
+                        <p><strong>Explanation:</strong> The central processing unit is the main processor inside a computer.</p>
+                        <p><strong>Function:</strong> It executes instructions and processes data for the computer and its network applications.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card" data-scan-labels="usb flash drive, usb memory stick, thumb drive">
+                    <img src="image/Flash Drive.JPG.jpg" alt="Flash Drive">
+                    <div class="tool-info">
+                        <h3>Flash Drive</h3>
+                        <p><strong>Explanation:</strong> A portable USB storage device that uses flash memory.</p>
+                        <p><strong>Function:</strong> It transfers files, drivers, and configuration backups between computers.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card" data-scan-labels="optical disc drive, dvd drive, cd drive">
+                    <img src="image/ODD.JPG.jpg" alt="Optical Disc Drive">
+                    <div class="tool-info">
+                        <h3>Optical Disc Drive</h3>
+                        <p><strong>Explanation:</strong> A computer drive that reads and writes optical discs such as CDs and DVDs.</p>
+                        <p><strong>Function:</strong> It reads installation media and archived files stored on discs.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card" data-scan-labels="computer memory, memory module, ddr4 ram">
+                    <img src="image/RAM.JPG.jpg" alt="RAM">
+                    <div class="tool-info">
+                        <h3>RAM</h3>
+                        <p><strong>Explanation:</strong> Random-access memory is the computer's short-term working memory.</p>
+                        <p><strong>Function:</strong> It temporarily stores data and instructions used by running programs.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card" data-scan-labels="rj45 plug, ethernet plug, network cable connector">
+                    <img src="image/RJ45 Connector.JPG.jpg" alt="RJ45 Connector">
+                    <div class="tool-info">
+                        <h3>RJ45 Connector</h3>
+                        <p><strong>Explanation:</strong> An eight-contact modular plug fitted to the end of Ethernet cable.</p>
+                        <p><strong>Function:</strong> It connects twisted-pair network cable to computers, switches, and routers.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card" data-scan-labels="projector, multimedia projector, presentation display">
+                    <img src="image/Multimediad%20projector.jpg" alt="Multimedia Projector">
+                    <div class="tool-info">
+                        <h3>Multimedia Projector</h3>
+                        <p><strong>Explanation:</strong> A projector used to display visuals from a laptop or media source on a larger screen.</p>
+                        <p><strong>Function:</strong> It presents training slides, diagrams, and network diagnostics during meetings or classroom demos.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card" data-scan-labels="ups, uninterruptible power supply, battery backup">
+                    <img src="image/Uninterapptible%20power%20supply%5BUPS%5D.JPG.jpg" alt="UPS Battery Backup">
+                    <div class="tool-info">
+                        <h3>UPS (Uninterruptible Power Supply)</h3>
+                        <p><strong>Explanation:</strong> A backup power unit that keeps equipment running during brief outages or voltage dips.</p>
+                        <p><strong>Function:</strong> It protects routers, switches, and computers from power interruptions and shutdowns.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card" data-scan-labels="cd, compact disc, optical disc, cd rom">
+                    <img src="image/CD(Compact%20disk)%20jpg.jpg" alt="Compact Disc">
+                    <div class="tool-info">
+                        <h3>Compact Disc (CD)</h3>
+                        <p><strong>Explanation:</strong> An optical disc used to store digital files and software.</p>
+                        <p><strong>Function:</strong> It can distribute drivers, installation media, and archived data.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card" data-scan-labels="cisco firewall, network firewall, security appliance">
+                    <img src="image/Cisco%20Firewall.jpg" alt="Cisco Firewall">
+                    <div class="tool-info">
+                        <h3>Cisco Firewall</h3>
+                        <p><strong>Explanation:</strong> A network security device that monitors and filters traffic between networks.</p>
+                        <p><strong>Function:</strong> It helps control access to a network and protect connected devices from unwanted traffic.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card" data-scan-labels="desktop pc, personal computer, workstation">
+                    <img src="image/Desktop%20Computer%20jpg.jpg" alt="Desktop Computer">
+                    <div class="tool-info">
+                        <h3>Desktop Computer</h3>
+                        <p><strong>Explanation:</strong> A stationary computer used for everyday computing and network administration.</p>
+                        <p><strong>Function:</strong> It runs network configuration, monitoring, and troubleshooting software.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card" data-scan-labels="graphics tablet, drawing tablet, pen tablet">
+                    <img src="image/Graphics%20Tablet.jpg" alt="Graphics Tablet">
+                    <div class="tool-info">
+                        <h3>Graphics Tablet</h3>
+                        <p><strong>Explanation:</strong> An input device that lets a user draw or write with a stylus on a touch-sensitive surface.</p>
+                        <p><strong>Function:</strong> It supports drawing diagrams, annotating technical documents, and other computer input tasks.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card" data-scan-labels="headphones, headset, earphones">
+                    <img src="image/Head%20Phone.jpg" alt="Headphones">
+                    <div class="tool-info">
+                        <h3>Headphones</h3>
+                        <p><strong>Explanation:</strong> An audio output device worn over or in the ears.</p>
+                        <p><strong>Function:</strong> It lets a technician listen to audio alerts, calls, and training material from a computer.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card" data-scan-labels="memory card, flash memory card, sd card">
+                    <img src="image/Memory%20Card.jpg" alt="Memory Card">
+                    <div class="tool-info">
+                        <h3>Memory Card</h3>
+                        <p><strong>Explanation:</strong> A small removable flash storage card for digital devices.</p>
+                        <p><strong>Function:</strong> It stores and transfers files, device data, and configuration backups.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card" data-scan-labels="multimedia projector, projector, presentation projector">
+                    <img src="image/Mulyimedian%20projector.jpg.jpg" alt="Multimedia Projector">
+                    <div class="tool-info">
+                        <h3>Multimedia Projector</h3>
+                        <p><strong>Explanation:</strong> A projector that displays computer or media output on a large screen.</p>
+                        <p><strong>Function:</strong> It presents training material, diagrams, and network information to a group.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card" data-scan-labels="document scanner, flatbed scanner, image scanner">
+                    <img src="image/Scaner.jpg" alt="Document Scanner">
+                    <div class="tool-info">
+                        <h3>Document Scanner</h3>
+                        <p><strong>Explanation:</strong> A device that converts paper documents and images into digital files.</p>
+                        <p><strong>Function:</strong> It digitizes equipment records, diagrams, and printed documentation.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card" data-scan-labels="interactive whiteboard, smart board, digital whiteboard">
+                    <img src="image/Smart%20Board.jpg" alt="Smart Board">
+                    <div class="tool-info">
+                        <h3>Smart Board</h3>
+                        <p><strong>Explanation:</strong> An interactive display that combines a digital screen with whiteboard controls.</p>
+                        <p><strong>Function:</strong> It supports collaborative lessons, presentations, and demonstrations of network concepts.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card" data-scan-labels="smartphone, smart phone, phone, mobile phone, mobile telephone, cell phone, cellphone, cellular phone, cellular telephone">
+                    <img src="image/Smart%20Phone%20(1).jpg" alt="Smartphone">
+                    <div class="tool-info">
+                        <h3>Smartphone</h3>
+                        <p><strong>Explanation:</strong> A mobile computing device with wireless networking and communication features.</p>
+                        <p><strong>Function:</strong> It can test wireless connectivity and provide access to network support tools.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card" data-scan-labels="computer speaker, audio speaker, loudspeaker">
+                    <img src="image/Speaker.jpg" alt="Speaker">
+                    <div class="tool-info">
+                        <h3>Speaker</h3>
+                        <p><strong>Explanation:</strong> An audio output device that converts an electrical signal into sound.</p>
+                        <p><strong>Function:</strong> It plays alerts, calls, and other audio from a computer or connected device.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="scanner-modal" id="scannerModal" aria-hidden="true">
+        <div class="scanner-panel">
+            <button class="close-scanner" type="button" onclick="closeScanner()" aria-label="Close scanner">×</button>
+            <h3>CAMERA SCANNER</h3>
+            <p class="scanner-subtitle">Point the camera at a tool or piece of equipment for on-device recognition.</p>
+
+            <div class="scanner-layout">
+                <div class="camera-box">
+                    <div class="camera-preview">
+                        <video id="cameraVideo" autoplay muted playsinline aria-label="Live camera preview"></video>
+                        <div class="scan-target" aria-hidden="true"><span>Place item here</span></div>
+                    </div>
+                    <div class="camera-controls">
+                        <button class="camera-button primary" id="scannerToggle" type="button" onclick="startScanner()">Start Scanner</button>
+                        <button class="camera-button scanner-teach-button" id="scannerTeachButton" type="button" onclick="toggleScannerTraining()" disabled>Teach Scanner</button>
+                    </div>
+                    <div class="scanner-training" id="scannerTraining" hidden>
+                        <label for="scannerTrainingItem">If recognition misses, choose the item in view:</label>
+                        <select id="scannerTrainingItem" aria-label="Choose the item shown in the camera"></select>
+                        <button class="camera-button primary" id="scannerTrainingSave" type="button" onclick="captureScannerTrainingExample()">Save Camera Example</button>
+                        <button class="scanner-training-reset" type="button" onclick="clearScannerTrainingExamples()">Reset Learned Examples</button>
+                        <p id="scannerTrainingStatus" role="status" aria-live="polite"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="scan-result" id="scanResult" aria-live="polite">
+                <h4>Ready to scan</h4>
+                <p>Start the camera to identify an item automatically.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="recognition-popup" id="recognitionPopup" aria-hidden="true">
+        <div class="recognition-card" role="dialog" aria-modal="true" aria-labelledby="recognitionName">
+            <button class="popup-close" type="button" onclick="closeRecognitionPopup()" aria-label="Close scan result">×</button>
+            <div class="popup-image">
+                <img id="recognitionImage" alt="">
+            </div>
+            <h4 id="recognitionName"></h4>
+            <p id="recognitionSimilarity"></p>
+            <p><strong>Function:</strong> <span id="recognitionFunction"></span></p>
+            <p><strong>Uses:</strong> <span id="recognitionExplanation"></span></p>
+            <p id="recognitionFeedback" class="recognition-feedback" role="status"></p>
+            <div class="recognition-actions" id="recognitionActions">
+                <button class="popup-confirm" type="button" onclick="confirmScannerMatch()">Correct - teach scanner</button>
+                <button class="popup-correction" type="button" onclick="showScannerCorrectionOptions()">Wrong - choose item</button>
+            </div>
+            <div class="recognition-correction" id="recognitionCorrection" hidden>
+                <select id="recognitionCorrectionSelect" aria-label="Choose the correct catalog item"></select>
+                <button class="popup-confirm" type="button" onclick="confirmScannerCorrection()">Use item and teach scanner</button>
+            </div>
+            <p id="recognitionTrainingStatus" class="recognition-training-status" aria-live="polite"></p>
+            <button class="popup-done" type="button" onclick="closeRecognitionPopup()">Done</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.22.0/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet@2.1.1/dist/mobilenet.min.js"></script>
+    <script src="script.js"></script>
+
+</body>
+</html>
